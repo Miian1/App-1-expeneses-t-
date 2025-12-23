@@ -1,6 +1,6 @@
 workflows:
   android-workflow:
-    name: Android Build (Debug APK)
+    name: Android Build (Debug APK with Icon)
     max_build_duration: 60
     instance_type: mac_mini_m2
 
@@ -21,6 +21,21 @@ workflows:
         script: |
           npx cap add android || true
           npx cap sync android
+
+      - name: Apply custom app icon
+        script: |
+          ICON_PATH="../public/icon.png" # path to your single icon PNG in repo
+          ANDROID_RES="android/app/src/main/res"
+          for DIR in mdpi hdpi xhdpi xxhdpi xxxhdpi; do
+            mkdir -p "$ANDROID_RES/mipmap-$DIR"
+            convert "$ICON_PATH" -resize $(case $DIR in \
+              mdpi)48x48;; \
+              hdpi)72x72;; \
+              xhdpi)96x96;; \
+              xxhdpi)144x144;; \
+              xxxhdpi)192x192;; \
+            esac) "$ANDROID_RES/mipmap-$DIR/ic_launcher.png"
+          done
 
       - name: Build Android DEBUG APK
         script: |
