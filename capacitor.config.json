@@ -1,0 +1,9 @@
+
+{
+  "appId": "io.hosteltracker.app",
+  "appName": "Hostel Tracker",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  }
+}

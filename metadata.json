@@ -1,0 +1,5 @@
+{
+  "name": "Hostel Money Tracker",
+  "description": "A modern, offline-first personal finance app specifically designed for hostel students to track spending, manage budgets, and analyze habits without needing an internet connection.",
+  "requestFramePermissions": []
+}
